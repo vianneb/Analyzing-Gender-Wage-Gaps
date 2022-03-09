@@ -34,5 +34,5 @@ def occupations_wage_gap_plot(wage_data):
     plt.xlabel("Job Title")
     plt.ylabel("Dollars USD")
 
-    plt.savefig('/home/occupations_wage_gap.png', bbox_inches='tight')
+    plt.savefig('occupations_wage_gap.png', bbox_inches='tight')
 

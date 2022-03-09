@@ -13,8 +13,8 @@ def education_wage_gap_plot(wage_data):
     """
 
 
-    female = .groupby('Education')['BasePay'].mean()
-    male = .groupby('Education')['BasePay'].mean()
+    female = wage_data.groupby('Education')['BasePay'].mean()
+    male = wage_data.groupby('Education')['BasePay'].mean()
 
     plt.title("Gender Base Pay Gap Based on Education")
     plt.xlabel("Level of Education")
