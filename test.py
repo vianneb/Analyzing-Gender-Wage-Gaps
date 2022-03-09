@@ -1,7 +1,7 @@
 import geopandas as gpd
 import pandas as pd
 import question_1
-# import question_2
+import question_2
 import question_3
 import question_4
 import question_5
@@ -15,7 +15,7 @@ def main():
     question_3.countries_wage_gap_plot(country_wage_data, countries)
     question_1.occupations_wage_gap_plot(occupations_wage_data)
     question_4.time_line_chart_plotly(country_wage_data)
-    # question_2.education_wage_gap_plot(education_wage_data)
+    question_2.education_wage_gap_plot(occupations_wage_data)
     question_5.gap_management_plot(country_wage_data, management_positions)
 
 
