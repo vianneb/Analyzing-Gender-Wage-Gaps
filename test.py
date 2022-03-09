@@ -1,11 +1,9 @@
 import geopandas as gpd
-import matplotlib.pyplot as plt
 import pandas as pd
 import question_1
 # import question_2
 import question_3
 import question_4
-
 
 
 def main():
