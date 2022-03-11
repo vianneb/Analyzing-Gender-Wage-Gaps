@@ -1,5 +1,10 @@
 """
-How does the wage gap differ between various occupations?
+Sarah Schafer, Vianne Nguyen, Jessica Robinson
+CSE 163 Final Project
+Analyzing Gender Wage Gaps
+
+In this project, we used three datasets to create visualizations that would
+help us analyze the gender wage gap.  
 """
 
 import matplotlib.pyplot as plt
