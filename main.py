@@ -7,7 +7,8 @@ import test
 def main():
     countries = gpd.read_file('Data/countries.geojson')
     country_wage_data = pd.read_csv('Data/gender-wage-gap-oecd (1).csv')
-    management_positions = pd.read_csv('Data/women-in-senior-and-middle-management-positions.csv')
+    management_positions = \
+        pd.read_csv('Data/women-in-senior-and-middle-management-positions.csv')
     occupations_wage_data = pd.read_csv('Data/glassdoor_gender_pay_gap.csv')
     analysis.countries_wage_gap_plot(country_wage_data, countries)
     analysis.occupations_wage_gap_plot(occupations_wage_data)

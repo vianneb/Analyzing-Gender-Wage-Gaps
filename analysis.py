@@ -9,9 +9,8 @@ import plotly.express as px
 
 sns.set()
 
-# Define a function to make the plot
-def occupations_wage_gap_plot(wage_data):
 
+def occupations_wage_gap_plot(wage_data):
     # filter into male and female data
     is_male = wage_data['Gender'] == 'Male'
     is_female = wage_data['Gender'] == 'Female'
@@ -23,13 +22,13 @@ def occupations_wage_gap_plot(wage_data):
     male_comp = male_df.groupby('JobTitle')['BasePay'].mean()
     female_comp = female_df.groupby('JobTitle')['BasePay'].mean()
 
-    df1 = pd.DataFrame({'JobTitle':male_comp.index, 'Male Pay':male_comp.values})
-    df2 = pd.DataFrame({'JobTitle':female_comp.index, 'Female Pay':female_comp.values})
-
+    df1 = pd.DataFrame({'JobTitle': male_comp.index,
+                        'Male Pay': male_comp.values})
+    df2 = pd.DataFrame({'JobTitle': female_comp.index,
+                        'Female Pay': female_comp.values})
     merged = df1.merge(df2, left_on='JobTitle', right_on='JobTitle',
-                   how='inner')
-
-    #plot results
+                       how='inner')
+    # plot results
     merged.plot(x='JobTitle', y=['Male Pay', 'Female Pay'], kind="bar")
     plt.title("Male v. Female Average Base Pay by Occupation")
     plt.xlabel("Job Title")
@@ -47,10 +46,13 @@ def education_wage_gap_plot(wage_data):
     female_avg = female.groupby('Education')['BasePay'].mean()
     male_avg = male.groupby('Education')['BasePay'].mean()
 
-    df_female = pd.DataFrame({'Education': female_avg.index, 'Female Pay':female_avg.values})
-    df_male = pd.DataFrame({'Education': male_avg.index, 'Male Pay':male_avg.values})
+    df_female = pd.DataFrame({'Education': female_avg.index,
+                              'Female Pay': female_avg.values})
+    df_male = pd.DataFrame({'Education': male_avg.index,
+                            'Male Pay': male_avg.values})
 
-    data_merge = df_female.merge(df_male, left_on='Education', right_on='Education', how='inner')
+    data_merge = df_female.merge(df_male, left_on='Education',
+                                 right_on='Education', how='inner')
 
     data_merge.plot(x='Education', y=['Female Pay', 'Male Pay'], kind='bar')
     plt.title("Gender Base Pay Gap Based on Education")
@@ -106,15 +108,23 @@ def gap_management_plot(wage_gap_data, management_data):
     # merge on an inner join
     wage_data_2014 = wage_gap_data[wage_gap_data['Year'] == 2014]
     management_data_2014 = management_data[management_data['Year'] == 2014]
-    merged_data = wage_data_2014.merge(management_data_2014, left_on='Code', right_on='Code', how='inner')
+    merged_data = wage_data_2014.merge(management_data_2014, left_on='Code',
+                                       right_on='Code', how='inner')
+    # rename longest column name
+    long_column_name = '5.5.2 - Proportion of women in senior and' + \
+        ' middle management positions (%) - IC_GEN_MGTN'
+    merged_data = merged_data.rename(columns={long_column_name:
+                                              'women_in_management'})
     # plot data using plotly
-    labels = {'Gender wage gap (OECD 2017)': 'Percentage Gender Wage Gap',
-              '5.5.2 - Proportion of women in senior and middle management positions (%) - IC_GEN_MGTN': 
-              'Percentage of women in senior and middle management positions',
-              'Entity_x': 'Country'}
+    labs = {'Gender wage gap (OECD 2017)': 'Percentage Gender Wage Gap',
+            'women_in_management':
+            'Percentage of women in senior/middle management positions',
+            'Entity_x': 'Country'}
+    plot_title = 'Wage Gap vs Proportion of women in senior/middle' + \
+        ' management positions, 2014'
     fig = px.scatter(merged_data, x='Gender wage gap (OECD 2017)',
-                     y='5.5.2 - Proportion of women in senior and middle management positions (%) - IC_GEN_MGTN',
-                     hover_data=['Entity_x'], 
-                     title='Wage Gap vs Proportion of women in senior and middle management positions, 2014',
-                     labels=labels)
+                     y='women_in_management',
+                     hover_data=['Entity_x'],
+                     title=plot_title,
+                     labels=labs)
     fig.write_html('gap_management_plot.html')
