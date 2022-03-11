@@ -82,24 +82,31 @@ def countries_wage_gap_plot(wage_data, countries):
 
 def time_line_chart_plotly(data):
     '''
-    Description of function *******
+    This function takes the OECD dataset and produces a line chart using plotly
+    that shows how the wage gap has changed over time.
+    The resulting plotly chart will be stored in 'time_line_chart_wage_gap.html'
+    The OECD dataset has the columns: Entity, Code, Year, and 
+    Gender wage gap (OECD 2017).  
+    In order to see the trends over long periods of time, we only plotted entities
+    with data before 1990.  This gave us roughly 25 years of data to see trends
+    from.  
+    This analyzes question 4 of our report.
     '''
-    filtered_data = filter_countries_1990(data)
+    # filter the data
+    # filter the data to years pre 1990
+    data_pre_1990 = data[data['Year'] <= 1990]
+    # create a list of the country codes that have data before 1990
+    countries_in_pre_1990 = list(data_pre_1990['Code'].unique())
+    # filter the original data to only the countries in the above list
+    filtered_data = data[data.Code.isin(countries_in_pre_1990)]
+    # filter the resulting data to years since 1990
+    filtered_data = filtered_data[filtered_data['Year'] >= 1990]
+    # plot figure
     fig = px.line(filtered_data, x='Year', y='Gender wage gap (OECD 2017)',
                   color='Entity', title='Gender Wage Gap Over Time by Country')
     fig.write_html('time_line_chart_wage_gap.html')
 
-
-def filter_countries_1990(data):
-    '''
-    Description of function ***********
-    '''
-    data_pre_1990 = data[data['Year'] <= 1990]
-    countries_in_pre_1990 = list(data_pre_1990['Code'].unique())
-    filtered_data = data[data.Code.isin(countries_in_pre_1990)]
-    filtered_data = filtered_data[filtered_data['Year'] >= 1990]
-    return filtered_data
-
+    
 
 def gap_management_plot(wage_gap_data, management_data):
     '''
