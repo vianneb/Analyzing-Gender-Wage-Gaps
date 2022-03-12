@@ -5,6 +5,9 @@ Analyzing Gender Wage Gaps
 
 In this project, we used three datasets to create visualizations that would
 help us analyze the gender wage gap.  
+** Describe the data sets
+** Describe the outputs
+** List the libraries used
 """
 
 import matplotlib.pyplot as plt
@@ -16,17 +19,21 @@ sns.set()
 
 
 def occupations_wage_gap_plot(wage_data):
+    """
+    Takes the Glassdoor dataset with income for various occupations
+    based on gender and plots a bar chart depicting the average male
+    and female pay for each occupation. The figure is saved in a file
+    occupations_wage_gap.png.
+    """
     # filter into male and female data
     is_male = wage_data['Gender'] == 'Male'
     is_female = wage_data['Gender'] == 'Female'
-
     male_df = wage_data[is_male]
     female_df = wage_data[is_female]
-
     # group by occupation and compute average
     male_comp = male_df.groupby('JobTitle')['BasePay'].mean()
     female_comp = female_df.groupby('JobTitle')['BasePay'].mean()
-
+    # turn series into a dataframe to plot
     df1 = pd.DataFrame({'JobTitle': male_comp.index,
                         'Male Pay': male_comp.values})
     df2 = pd.DataFrame({'JobTitle': female_comp.index,
@@ -38,7 +45,6 @@ def occupations_wage_gap_plot(wage_data):
     plt.title("Male v. Female Average Base Pay by Occupation")
     plt.xlabel("Job Title")
     plt.ylabel("Dollars USD")
-
     plt.savefig('occupations_wage_gap.png', bbox_inches='tight')
 
 
