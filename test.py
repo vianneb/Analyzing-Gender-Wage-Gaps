@@ -18,6 +18,7 @@ def test_occupations_wage_gap_plot(test_data):
     if the data is filtered correctly and groupby mean
     values are computed correctly.
     """
+    print('Testing Occupation data filtering:')
     # test filtering by male
     df1 = test_data[test_data['Gender'] == 'Male']
     print('Are there Female values in the Gender column: ',
@@ -44,6 +45,26 @@ def test_occupations_wage_gap_plot(test_data):
     print(df2_avg_pay)
 
 
+def test_countries_plot(wage_data, countries):
+    '''
+    *******COMMENTS HERE*********
+    '''
+    print()
+    print('Testing data filtering for wage gap map')
+    # manipulate the wage data
+    filtered_data = wage_data[wage_data['Year'] == 2014]
+    # Check (visually) if data is only in year 2014
+    print('Filtered data to 2014: ', filtered_data)
+    countries = countries[['ADM0_A3', 'geometry']]
+    # merge with the geo data
+    merged_df = countries.merge(filtered_data, left_on='ADM0_A3',
+                                right_on='Code', how='left')
+    # Check columns visually, and check if did a left merge (all countries)
+    print('Columns for merged data: ', merged_df.columns)
+    print('Length of merged data is the same as length of geo data: ',
+          len(merged_df) == len(countries))
+
+
 def test_time_line_chart(data):
     '''
     Takes a small subset of the OECD data and performs the same data
@@ -54,16 +75,19 @@ def test_time_line_chart(data):
     the filtered data set shows the expected information at each step in
     data filtering.
     '''
+    print()
+    print('Testing data filtering for wage gap over time')
     # filter the data
     # filter the data to years pre 1990
     data_pre_1990 = data[data['Year'] <= 1990]
     # check that the maximum year equals 1990
-    print(data_pre_1990['Year'].max() == 1990)
+    print('Maximum Year in data_pre_1990 is 1990: ',
+          data_pre_1990['Year'].max() == 1990)
     # create a list of the country codes that have data before 1990
     countries_in_pre_1990 = list(data_pre_1990['Code'].unique())
     # check that the only country is Australia
-    print('Countries left is only Australia: ',
-          countries_in_pre_1990 == ['AUS'])
+    print('Countries left is only UK: ',
+          countries_in_pre_1990 == ['GBR'])
     print('Countries are formatted as a list: ',
           type(countries_in_pre_1990) == list)
     # filter the original data to only the countries in the above list
@@ -81,11 +105,37 @@ def test_time_line_chart(data):
     print(filtered_data)
 
 
+def test_gap_management(wage_gap_data, management_data):
+    '''
+    Describe function
+    '''
+    print()
+    print('Testing Data Filtering for Wage Gap and Management Data')
+    # merge on an inner join
+    wage_data_2014 = wage_gap_data[wage_gap_data['Year'] == 2014]
+    management_data_2014 = management_data[management_data['Year'] == 2014]
+    merged_data = wage_data_2014.merge(management_data_2014, left_on='Code',
+                                       right_on='Code', how='inner')
+    # See if the merged data frame has one row
+    print('Merged data, should have one row: ', merged_data)
+    # rename longest column name
+    long_column_name = '5.5.2 - Proportion of women in senior and' + \
+        ' middle management positions (%) - IC_GEN_MGTN'
+    merged_data = merged_data.rename(columns={long_column_name:
+                                              'women_in_management'})
+    # Test that the column names are as expected
+    print('Merged data column names: ', merged_data.columns)
+
+
 def main():
+    countries = gpd.read_file('Data/countries.geojson')
     test_wage_data = pd.read_csv('Data/test_wage_data.csv')
     test_oecd_data = pd.read_csv('Data/test_oecd_data.csv')
+    test_management_data = pd.read_csv('Data/test_management_data.csv')
     test_occupations_wage_gap_plot(test_wage_data)
+    test_countries_plot(test_oecd_data, countries)
     test_time_line_chart(test_oecd_data)
+    test_gap_management(test_oecd_data, test_management_data)
 
 
 if __name__ == '__main__':
