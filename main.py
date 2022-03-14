@@ -36,10 +36,22 @@ import analysis
 
 
 def compute_statistics(oecd_data, glassdoor_data, management_data):
+    '''
+    Takes three DataFrames representing the OECD data, the Glassdoor
+    data, and the Our World in Data management data, and computes
+    and prints out summary statistics about the data sets.
+    This includes:
+    The number of countries in the OECD data and the average wage gap,
+    The relative number and ratio of men and women in the Glassdoor data,
+    The seniority of men and women in the Glassdoor data, and
+    The average proportion of women in senior and middle management positions.
+    '''
+    # Compute and print statistics for OECD Data
     grouped_oecd = oecd_data.groupby('Entity')
     print('There are', len(grouped_oecd), 'countries in the OECD data.')
     print('The average wage gap, over all years for any country, is',
           round(oecd_data['Gender wage gap (OECD 2017)'].mean(), 2))
+    # Compute and print statistics for glassdoor data
     men_glassdoor = glassdoor_data[glassdoor_data['Gender'] == 'Male']
     women_glassdoor = glassdoor_data[glassdoor_data['Gender'] == 'Female']
     num_men_glassdoor = len(men_glassdoor)
@@ -53,6 +65,7 @@ def compute_statistics(oecd_data, glassdoor_data, management_data):
     women_avg_seniority = round(women_glassdoor['Seniority'].mean(), 2)
     print('For men, the average seniority was', men_avg_seniority,
           'while for women the average seniority was', women_avg_seniority)
+    # Compute and print statistics for management data
     copy_management = management_data.copy()
     long_column_name = '5.5.2 - Proportion of women in senior and' + \
         ' middle management positions (%) - IC_GEN_MGTN'

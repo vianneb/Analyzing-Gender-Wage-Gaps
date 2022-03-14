@@ -51,7 +51,7 @@ def occupations_wage_gap_plot(wage_data):
     """
     Takes the Glassdoor dataset with income for various occupations
     based on gender and plots a bar chart depicting the average male
-    and female pay for each occupation. The figure is saved in a file
+    and female base pay for each occupation. The figure is saved in a file
     occupations_wage_gap.png.
     """
     # filter into male and female data
@@ -79,9 +79,10 @@ def occupations_wage_gap_plot(wage_data):
 
 def education_wage_gap_plot(wage_data):
     '''
-    A bar graph is plotted from the information in the Glassdoor dataset to
-    show the average pay gap between men and women depending on their levels of
-    education.
+    Takes a DataFrame of the Glassdoor data and plots a bar plot that
+    shows the average base pay gap between men and women depending on their
+    levels of education.
+    The plot is saved at education_wage_gap.png
     '''
     # female and male data is filtered
     female = wage_data[wage_data['Gender'] == 'Female']
