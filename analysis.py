@@ -3,33 +3,33 @@ Sarah Schafer, Vianne Nguyen, Jessica Robinson
 CSE 163 Final Project
 Analyzing Gender Wage Gaps
 
-In this module, we define functions that create visualizations that
-show various aspects of the gender wage gap.
+In this module, we define functions that create visualizations that show
+various aspects of the gender wage gap.
 These visualizations are:
-- occupations_wage_gap.png, which is created by the
-occupations_wage_gap_plot function, and is a bar chart comparing the
-base pay of various occupations between genders.  This function takes
-as a parameter a dataframe of the Kaggle Glassdoor data.
-- education_wage_gap.png, which is created by the
-education_wage_gap_plot function, and is a bar chart comparing the
-base pay of various occupations between genders.  This function takes
-as a parameter a dataframe of the Kaggle Glassdoor data.
-- wage_gap_2014.png, which is created by the countries_wage_gap_plot
-function, and is a world map that shows the relative gender wage gap
-of the countries included in the OECD data set in 2014.  Countries
-without data are filled in with grey.
+- occupations_wage_gap.png, which is created by the occupations_wage_gap_plot
+function, and is a bar chart comparing the base pay of various occupations
+between genders.  This function takes as a parameter a dataframe of the Kaggle
+Glassdoor data.
+- education_wage_gap.png, which is created by the education_wage_gap_plot
+function, and is a bar chart comparing the base pay of various occupations
+between genders.  This function takes as a parameter a dataframe of the Kaggle
+Glassdoor data.
+- wage_gap_2014.png, which is created by the countries_wage_gap_plot function,
+and is a world map that shows the relative gender wage gap of the countries
+included in the OECD data set in 2014.  Countries without data are filled in
+with grey.
 - time_line_chart_wage_gap.html, which is created by the time_line_chart
-function, and is an html file that represents a plotly visualization that
-shows how a few countries' wage gaps have changed over time since 1990.
-The countries we filtered to are countries in the OECD data set that had
-data before or starting in 1990.
+function, and is an html file that represents a plotly visualization that shows
+how a few countries' wage gaps have changed over time since 1990. The countries
+we filtered to are countries in the OECD data set that had data before or
+starting in 1990.
 - gap_management_plot.html, which is creeated by the gap_management_plot
-function, which takes both the OECD gender wage gap data and the Our World
-in Data management data set and merges them to analyze how the proportion
-of women in senior and middle management positions of a country impacts the
-wage gap of the country.  The html file that is produced represents a plotly
-visualization that is a scatter plot, where each point represents a different
-country in the year 2014.
+function, which takes both the OECD gender wage gap data and the Our World in
+Data management data set and merges them to analyze how the proportion of women
+in senior and middle management positions of a country impacts the wage gap of
+the country.  The html file that is produced represents a plotly visualization
+that is a scatter plot, where each point represents a different country in the
+year 2014.
 
 To create these plots, we used the libraries:
 - matplotlib
@@ -79,9 +79,9 @@ def occupations_wage_gap_plot(wage_data):
 
 def education_wage_gap_plot(wage_data):
     '''
-    A bar graph is plotted from the information in the
-    Glassdoor dataset to show the average pay gap between
-    men and women depending on their levels of education.
+    A bar graph is plotted from the information in the Glassdoor dataset to
+    show the average pay gap between men and women depending on their levels of
+    education.
     '''
     # female and male data is filtered
     female = wage_data[wage_data['Gender'] == 'Female']
@@ -106,7 +106,11 @@ def education_wage_gap_plot(wage_data):
 
 def countries_wage_gap_plot(wage_data, countries):
     '''
-    *******COMMENTS HERE*********
+    Takes the OECD wage gap data set as a pandas DataFrame and the geospatial
+    data set as a GeoPandas data frame, and creates a map visualization that
+    encodes the relative Gender Wage Gap of each country included in the data
+    set by color. All countries that have no data on the gender wage gap are
+    colored grey (#EEEEEE).  The map is saved as: wage_gap_2014.png
     '''
     # manipulate the wage data
     filtered_data = wage_data[wage_data['Year'] == 2014]
@@ -120,6 +124,7 @@ def countries_wage_gap_plot(wage_data, countries):
     fig, ax = plt.subplots(1)
     countries.plot(ax=ax, color='#EEEEEE')
     merged_df.plot(column='Gender wage gap (OECD 2017)', ax=ax, legend=True)
+    plt.title("Gender Wage Gap for OECD Countries as a Percentage, 2014")
     fig.savefig('wage_gap_2014.png')
 
 
@@ -153,7 +158,13 @@ def time_line_chart(data):
 
 def gap_management_plot(wage_gap_data, management_data):
     '''
-    Describe function
+    Takes the OECD data and the Our World in Data management data as pandas
+    DataFrames, filters the data to the year 2014, and merges the data by
+    entity using an inner join.  Then creates a plotly scatter plot that
+    shows the relationship between countries' wage gap and proportion of
+    women in senior and middle management.  Each point represents a
+    different country, so hovering over each point shows the data for each
+    country.
     '''
     # merge on an inner join
     wage_data_2014 = wage_gap_data[wage_gap_data['Year'] == 2014]

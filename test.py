@@ -28,7 +28,7 @@ test_wage_data.csv mirrors the glassdoor_gender_pay_gap.csv file, which has
 columns for the type of job, the gender of the individual, their performance
 evaluation, their highest education level, their department, their seniority,
 their base pay, and their bonus.  For our analysis, we primarily looked at
-job titles, gender, education, base pay, and bonus information.
+job titles, gender, education, and base pay information.
 '''
 import pandas as pd
 import geopandas as gpd

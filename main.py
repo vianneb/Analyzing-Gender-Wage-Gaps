@@ -3,33 +3,30 @@ Sarah Schafer, Vianne Nguyen, Jessica Robinson
 CSE 163 Final Project
 Analyzing Gender Wage Gaps
 
-This module has a main method that calls the functions
-defined in analysis.py, which create a series of data
-visualizations that help represent the gender wage gap.
-In order to call these methods, this file first has to
-use the geopandas and pandas libraries to load in our data.
+This module has a main method that calls the functions defined in analysis.py,
+which create a series of data visualizations that help represent the gender
+wage gap.  In order to call these methods, this file first has to use the
+geopandas and pandas libraries to load in our data.
 
-It also has the function compute_statistics, which takes our
-three data sets pertaining to gender wage gap data, and computes
-and prints summary statistics about them.
+It also has the function compute_statistics, which takes our three data sets
+pertaining to gender wage gap data, and computes and prints summary statistics
+about them.
 
 Our data consists of four data sets:
-- gender-wage-gap-oecd (1).csv - a dataset from OECD that has
-columns representing the country the data is for (entity),
-the year, and the Gender Wage gap for that country and year
-as a percentage.
-- women-in-senior-and-middle-management-positions.csv - a dataset
-from Our World in Data that has columns relating to the country
-the data is for (entity), the year, and the proportion of women
-in senior and middle management positions (as a percentage).
-- glassdoor_gender_pay_gap.csv - a dataset from Kaggle from Glassdoor
-that has columns for the type of job, the gender of the individual,
-their performance evaluation, their highest education level, their
-department, their seniority, their base pay, and their bonus.  For
-our analysis, we primarily looked at job titles, gender, education,
-base pay, and bonus information.
-- countries.json, which is a geospatial dataset that is used to
-create a map of the world to analyze differences in the gender wage gap
+- gender-wage-gap-oecd (1).csv - a dataset from OECD that has columns
+representing the country the data is for (entity), the year, and the Gender
+Wage gap for that country and year as a percentage.
+- women-in-senior-and-middle-management-positions.csv - a dataset from Our
+World in Data that has columns relating to the country the data is for
+(entity), the year, and the proportion of women in senior and middle
+management positions (as a percentage).
+- glassdoor_gender_pay_gap.csv - a dataset from Kaggle from Glassdoor that has
+columns for the type of job, the gender of the individual, their performance
+evaluation, their highest education level, their department, their seniority,
+their base pay, and their bonus.  For our analysis, we primarily looked at
+job titles, gender, education, and base pay.
+- countries.json, which is a geospatial dataset that is used to create a map of
+the world to analyze differences in the gender wage gap
 """
 
 
