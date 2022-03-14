@@ -3,7 +3,7 @@
 ## Modules & instructions to run
 
 - `main.py`: run this module to load the three datasets and display the plots
-in the `analysis.py` module.  This module also computes and prints basic summary statistics about each dataset that are included in our report.
+in the `analysis.py` module. If running in Visual Studio, plots will appear in the file tree on the left-hand side of the editor. For .png files, click the file to open the plot in Visual Studio. For .html files, download the file and open it in File Explorer/Finder to view the plot or open and run the file in Visual Studio to view the plot in browser.
 
 - `analysis.py`: contains all the functions that generate the plots that answer
 our research questions.
