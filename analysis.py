@@ -4,7 +4,7 @@ CSE 163 Final Project
 Analyzing Gender Wage Gaps
 
 In this project, we used three datasets to create visualizations that would
-help us analyze the gender wage gap.  
+help us analyze the gender wage gap.
 ** Describe the data sets
 ** Describe the outputs
 ** List the libraries used
@@ -50,7 +50,7 @@ def occupations_wage_gap_plot(wage_data):
 
 def education_wage_gap_plot(wage_data):
     '''
-    A bar graph is plotted from the information in the 
+    A bar graph is plotted from the information in the
     Glassdoor dataset to show the average pay gap between
     men and women depending on their levels of education.
     '''
@@ -98,12 +98,13 @@ def time_line_chart_plotly(data):
     '''
     This function takes the OECD dataset and produces a line chart using plotly
     that shows how the wage gap has changed over time.
-    The resulting plotly chart will be stored in 'time_line_chart_wage_gap.html'
-    The OECD dataset has the columns: Entity, Code, Year, and 
-    Gender wage gap (OECD 2017).  
-    In order to see the trends over long periods of time, we only plotted entities
-    with data before 1990.  This gave us roughly 25 years of data to see trends
-    from.  
+    The resulting plotly chart will be stored in
+    'time_line_chart_wage_gap.html'
+    The OECD dataset has the columns: Entity, Code, Year, and
+    Gender wage gap (OECD 2017).
+    In order to see the trends over long periods of time, we only plotted
+    entities with data before 1990.  This gave us roughly 25 years of
+    data to analyze trends.
     This analyzes question 4 of our report.
     '''
     # filter the data
@@ -120,7 +121,6 @@ def time_line_chart_plotly(data):
                   color='Entity', title='Gender Wage Gap Over Time by Country')
     fig.write_html('time_line_chart_wage_gap.html')
 
-    
 
 def gap_management_plot(wage_gap_data, management_data):
     '''

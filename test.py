@@ -15,8 +15,8 @@ are what is expected.  These functions do all of the data processing in the
 analysis file, but they do not create the plots.
 Instead of using the whole data sets for this file, we only load in and
 process small subsets of the data that are identical in structure to the
-actual data sets.  These tests will not be called when main.py is run, but rather
-are run by running the main method of this file, test.py.
+actual data sets.  These tests will not be called when main.py is run, but
+rather are run by running the main method of this file, test.py.
 test_management_data.csv mirrors the
 women-in-senior-and-middle-management-positions.csv file, which has columns
 relating to the country the data is for (entity), the year, and the proportion
@@ -70,10 +70,12 @@ def test_occupations_wage_gap_plot(test_data):
 
 def test_education_wage_gap_plot(test_data):
     """
-    Tests the education_wage_gap_plot function using 
+    Tests the education_wage_gap_plot function using
     a smaller group of data taken from the Glassdoor
     dataset.
     """
+    print()
+    print('Testing filtering for Education plot')
     # tests the filtering by female and male
     female = test_data[test_data['Gender'] == 'Female']
     male = test_data[test_data['Gender'] == 'Male']
