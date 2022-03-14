@@ -21,14 +21,14 @@ test_management_data.csv mirrors the
 women-in-senior-and-middle-management-positions.csv file, which has columns
 relating to the country the data is for (entity), the year, and the proportion
 of women in senior and middle management positions (as a percentage).
-test_oecd_data.csv mirros the gender-wage-gap-oecd (1).csv file, which has
+test_oecd_data.csv mirrors the gender-wage-gap-oecd (1).csv file, which has
 columns representing the country the data is for (entity), the year, and the
-Gender Wage gap for that country and year as a percentage. ****
+Gender Wage gap for that country and year as a percentage.
 test_wage_data.csv mirrors the glassdoor_gender_pay_gap.csv file, which has
 columns for the type of job, the gender of the individual, their performance
 evaluation, their highest education level, their department, their seniority,
 their base pay, and their bonus.  For our analysis, we primarily looked at
-job titles, gender, education, base pay, and bonus information. ***
+job titles, gender, education, base pay, and bonus information.
 '''
 import pandas as pd
 import geopandas as gpd
@@ -96,7 +96,10 @@ def test_education_wage_gap_plot(test_data):
 
 def test_countries_plot(wage_data, countries):
     '''
-    *******COMMENTS HERE*********
+    Takes a subset of the OECD data and countries data and
+    tests the function countries_wage_gap_plot. It tests that
+    the data is filtered correctly for the wage gap map as well as
+    testing that everything is merged correctly.
     '''
     print()
     print('Testing data filtering for wage gap map')
@@ -156,7 +159,11 @@ def test_time_line_chart(data):
 
 def test_gap_management(wage_gap_data, management_data):
     '''
-    Describe function
+    It tests the function gap_management_plot on a smaller scale with a
+    subset of the OECD data and management data to determine if the data
+    is merged correctly. It also tests that the renaming of the longest
+    column works as well as checking that the names of the columns are
+    as expected.
     '''
     print()
     print('Testing Data Filtering for Wage Gap and Management Data')

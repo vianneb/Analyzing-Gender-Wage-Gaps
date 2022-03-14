@@ -3,17 +3,46 @@ Sarah Schafer, Vianne Nguyen, Jessica Robinson
 CSE 163 Final Project
 Analyzing Gender Wage Gaps
 
-In this project, we used three datasets to create visualizations that would
-help us analyze the gender wage gap.
-** Describe the data sets
-** Describe the outputs
-** List the libraries used
+In this module, we define functions that create visualizations that
+show various aspects of the gender wage gap.
+These visualizations are:
+- occupations_wage_gap.png, which is created by the
+occupations_wage_gap_plot function, and is a bar chart comparing the
+base pay of various occupations between genders.  This function takes
+as a parameter a dataframe of the Kaggle Glassdoor data.
+- education_wage_gap.png, which is created by the
+education_wage_gap_plot function, and is a bar chart comparing the
+base pay of various occupations between genders.  This function takes
+as a parameter a dataframe of the Kaggle Glassdoor data.
+- wage_gap_2014.png, which is created by the countries_wage_gap_plot
+function, and is a world map that shows the relative gender wage gap
+of the countries included in the OECD data set in 2014.  Countries
+without data are filled in with grey.
+- time_line_chart_wage_gap.html, which is created by the time_line_chart
+function, and is an html file that represents a plotly visualization that
+shows how a few countries' wage gaps have changed over time since 1990.
+The countries we filtered to are countries in the OECD data set that had
+data before or starting in 1990.
+- gap_management_plot.html, which is creeated by the gap_management_plot
+function, which takes both the OECD gender wage gap data and the Our World
+in Data management data set and merges them to analyze how the proportion
+of women in senior and middle management positions of a country impacts the
+wage gap of the country.  The html file that is produced represents a plotly
+visualization that is a scatter plot, where each point represents a different
+country in the year 2014.
+
+To create these plots, we used the libraries:
+- matplotlib
+- pandas
+- seaborn
+- plotly
 """
 
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 import plotly.express as px
+
 
 sns.set()
 
@@ -94,7 +123,7 @@ def countries_wage_gap_plot(wage_data, countries):
     fig.savefig('wage_gap_2014.png')
 
 
-def time_line_chart_plotly(data):
+def time_line_chart(data):
     '''
     This function takes the OECD dataset and produces a line chart using plotly
     that shows how the wage gap has changed over time.

@@ -8,8 +8,24 @@ defined in analysis.py, which create a series of data
 visualizations that help represent the gender wage gap.
 In order to call these methods, this file first has to
 use the geopandas and pandas libraries to load in our data.
+
 Our data consists of four data sets:
-gender-wage-gap-oecd (1).csv -
+- gender-wage-gap-oecd (1).csv - a dataset from OECD that has
+columns representing the country the data is for (entity),
+the year, and the Gender Wage gap for that country and year
+as a percentage.
+- women-in-senior-and-middle-management-positions.csv - a dataset
+from Our World in Data that has columns relating to the country
+the data is for (entity), the year, and the proportion of women
+in senior and middle management positions (as a percentage).
+- glassdoor_gender_pay_gap.csv - a dataset from Kaggle from Glassdoor
+that has columns for the type of job, the gender of the individual,
+their performance evaluation, their highest education level, their
+department, their seniority, their base pay, and their bonus.  For
+our analysis, we primarily looked at job titles, gender, education,
+base pay, and bonus information.
+- countries.json, which is a geospatial dataset that is used to
+create a map of the world to analyze differences in the gender wage gap
 """
 
 
@@ -32,7 +48,7 @@ def main():
     # Run Analysis Functions
     analysis.countries_wage_gap_plot(country_wage_df, countries)
     analysis.occupations_wage_gap_plot(occupations_education_df)
-    analysis.time_line_chart_plotly(country_wage_df)
+    analysis.time_line_chart(country_wage_df)
     analysis.education_wage_gap_plot(occupations_education_df)
     analysis.gap_management_plot(country_wage_df, management_positions_df)
 
