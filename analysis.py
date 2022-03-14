@@ -49,22 +49,25 @@ def occupations_wage_gap_plot(wage_data):
 
 
 def education_wage_gap_plot(wage_data):
-    """
-    """
+    '''
+    A bar graph is plotted from the information in the 
+    Glassdoor dataset to show the average pay gap between
+    men and women depending on their levels of education.
+    '''
+    # female and male data is filtered
     female = wage_data[wage_data['Gender'] == 'Female']
     male = wage_data[wage_data['Gender'] == 'Male']
-
+    # computes average after it is grouped by education
     female_avg = female.groupby('Education')['BasePay'].mean()
     male_avg = male.groupby('Education')['BasePay'].mean()
-
+    # in order to plot, series is turned into a dataframe
     df_female = pd.DataFrame({'Education': female_avg.index,
                               'Female Pay': female_avg.values})
     df_male = pd.DataFrame({'Education': male_avg.index,
                             'Male Pay': male_avg.values})
-
     data_merge = df_female.merge(df_male, left_on='Education',
                                  right_on='Education', how='inner')
-
+    # plot information and results
     data_merge.plot(x='Education', y=['Female Pay', 'Male Pay'], kind='bar')
     plt.title("Gender Base Pay Gap Based on Education")
     plt.xlabel("Level of Education")

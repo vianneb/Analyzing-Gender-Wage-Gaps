@@ -3,9 +3,32 @@ Sarah Schafer, Vianne Nguyen, Jessica Robinson
 CSE 163 Final Project
 Analyzing Gender Wage Gaps
 
-*** Describe purpose
-*** Describe what it does
-*** Describe data
+For our project, we decided to create a number of data visualizations
+to help us better understand the gender wage gap on a variety of different
+factors, including country, year, and occupation.  To do this, we had to
+do a lot of data wrangling, and in order to make sure we did this
+correctly, we created this file.
+This file defines and calls testing functions that follow the same data
+filtering processes as the functions in the analysis file, but also use
+print statements to make sure that the results of each step of data filtering
+are what is expected.  These functions do all of the data processing in the
+analysis file, but they do not create the plots.
+Instead of using the whole data sets for this file, we only load in and
+process small subsets of the data that are identical in structure to the
+actual data sets.  These tests will not be called when main.py is run, but rather
+are run by running the main method of this file, test.py.
+test_management_data.csv mirrors the
+women-in-senior-and-middle-management-positions.csv file, which has columns
+relating to the country the data is for (entity), the year, and the proportion
+of women in senior and middle management positions (as a percentage).
+test_oecd_data.csv mirros the gender-wage-gap-oecd (1).csv file, which has
+columns representing the country the data is for (entity), the year, and the
+Gender Wage gap for that country and year as a percentage. ****
+test_wage_data.csv mirrors the glassdoor_gender_pay_gap.csv file, which has
+columns for the type of job, the gender of the individual, their performance
+evaluation, their highest education level, their department, their seniority,
+their base pay, and their bonus.  For our analysis, we primarily looked at
+job titles, gender, education, base pay, and bonus information. ***
 '''
 import pandas as pd
 import geopandas as gpd
@@ -43,6 +66,30 @@ def test_occupations_wage_gap_plot(test_data):
     print(df1_avg_pay)
     print('Female Average Pays')
     print(df2_avg_pay)
+
+
+def test_education_wage_gap_plot(test_data):
+    """
+    Tests the education_wage_gap_plot function using 
+    a smaller group of data taken from the Glassdoor
+    dataset.
+    """
+    # tests the filtering by female and male
+    female = test_data[test_data['Gender'] == 'Female']
+    male = test_data[test_data['Gender'] == 'Male']
+    print('Female' in female.Gender)
+    print(female)
+    print('Male' in female.Gender)
+    print(male)
+
+    # tests the groupby as well as the values for the average
+    female_avg = female.groupby('Education')['BasePay'].mean()
+    male_avg = male.groupby('Education')['BasePay'].mean()
+    print(female_avg)
+    print(male_avg)
+    print(female_avg['College'] == 42363)
+    print(male_avg['College'] == 108476)
+    print(female_avg['PhD'] == 90208)
 
 
 def test_countries_plot(wage_data, countries):
@@ -133,6 +180,7 @@ def main():
     test_oecd_data = pd.read_csv('Data/test_oecd_data.csv')
     test_management_data = pd.read_csv('Data/test_management_data.csv')
     test_occupations_wage_gap_plot(test_wage_data)
+    test_education_wage_gap_plot(test_wage_data)
     test_countries_plot(test_oecd_data, countries)
     test_time_line_chart(test_oecd_data)
     test_gap_management(test_oecd_data, test_management_data)

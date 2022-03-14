@@ -12,7 +12,6 @@ Analyzing Gender Wage Gaps
 import geopandas as gpd
 import pandas as pd
 import analysis
-import test
 
 
 def main():
