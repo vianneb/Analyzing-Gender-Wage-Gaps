@@ -125,7 +125,7 @@ def countries_wage_gap_plot(wage_data, countries):
     fig, ax = plt.subplots(1)
     countries.plot(ax=ax, color='#EEEEEE')
     merged_df.plot(column='Gender wage gap (OECD 2017)', ax=ax, legend=True)
-    plt.title("Gender Wage Gap for OECD Countries as a Percentage, 2014")
+    plt.title("Gender Wage Gap for OECD Countries as a\nPercentage, 2014")
     fig.savefig('wage_gap_2014.png')
 
 
