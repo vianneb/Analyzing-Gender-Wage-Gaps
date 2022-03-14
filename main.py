@@ -49,21 +49,21 @@ def compute_statistics(oecd_data, glassdoor_data, management_data):
     num_women_glassdoor = len(women_glassdoor)
     print("In the Glassdoor data set, there are", num_men_glassdoor, "men",
           "and", num_women_glassdoor, "women.")
-    print("This means there are", round(num_men_glassdoor / num_women_glassdoor, 2),
+    print("This means there are",
+          round(num_men_glassdoor / num_women_glassdoor, 2),
           "times more men than women included in the dataset.")
     men_avg_seniority = round(men_glassdoor['Seniority'].mean(), 2)
     women_avg_seniority = round(women_glassdoor['Seniority'].mean(), 2)
     print('For men, the average seniority was', men_avg_seniority,
           'while for women the average seniority was', women_avg_seniority)
-    copy_management_data = management_data.copy()
+    copy_management = management_data.copy()
     long_column_name = '5.5.2 - Proportion of women in senior and' + \
         ' middle management positions (%) - IC_GEN_MGTN'
-    copy_management_data = copy_management_data.rename(columns={long_column_name:
-                                              'women_in_management'})
+    copy_management = copy_management.rename(columns={long_column_name:
+                                             'women_in_management'})
     print('The average proportion of women in senior and middle management',
           'positions, for any country and across all years, is',
-          round(copy_management_data['women_in_management'].mean(), 2))
-    
+          round(copy_management['women_in_management'].mean(), 2))
 
 
 def main():
