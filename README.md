@@ -1,4 +1,6 @@
 # Analyzing Gender Wage Gaps
+CSE 163 Final Project
+Jessica Robinson, Sally (Sarah) Schafer, Vianne Bui Nguyen
 
 ## Modules & instructions to run
 
@@ -23,3 +25,10 @@ Please install the following libraries in order to run the modules:
 
 ## GitHub Link
 https://github.com/vianneb/cse163finalproject
+
+## Full Written Report Link
+https://docs.google.com/document/d/1xWeXu0yX4oCFVDLqhfzrf3gx3X4bVUBBxsLc18yirGI/edit?usp=sharing
+
+## Presentation Links
+Slides: https://docs.google.com/presentation/d/1QJzhbeBN7yN5mix52fzYH_hN5mY9SmT9jP0EsF0v49U/edit?usp=sharing
+Video: https://youtu.be/2eoD2NZLs5s

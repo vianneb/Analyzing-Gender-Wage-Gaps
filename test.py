@@ -1,5 +1,5 @@
 '''
-Sarah Schafer, Vianne Nguyen, Jessica Robinson
+Sarah Schafer, Vianne Bui Nguyen, Jessica Robinson
 CSE 163 Final Project
 Analyzing Gender Wage Gaps
 
